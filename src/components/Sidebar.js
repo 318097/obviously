@@ -4,8 +4,8 @@ import {
   PlusCircleIcon,
   TableCellsIcon,
 } from "@heroicons/react/24/outline";
-import Logo from "./assets/images/logo.png";
-import Profile from "./assets/images/profile.png";
+import Logo from "../assets/images/logo.png";
+import Profile from "../assets/images/profile.png";
 import {
   BookOpenIcon,
   Cog6ToothIcon,
