@@ -1,89 +1,111 @@
+import {
+  CircleStackIcon,
+  PlusCircleIcon,
+  TableCellsIcon,
+} from "@heroicons/react/24/outline";
 import Logo from "./assets/images/logo.png";
 import Profile from "./assets/images/profile.png";
+import {
+  BookOpenIcon,
+  Cog6ToothIcon,
+  QuestionMarkCircleIcon,
+  ViewColumnsIcon,
+} from "@heroicons/react/24/outline";
 
 const Sidebar = () => {
   const MENU_ITEMS = [
     {
       label: "Explore",
       value: "/explore",
-      icon: "explore",
+      icon: <ViewColumnsIcon className="size-4" />,
     },
     {
       label: "Definitions",
       value: "/definition",
-      icon: "definition",
+      icon: <BookOpenIcon className="size-4" />,
     },
     {
       label: "Settings",
       value: "/settings",
-      icon: "settings",
+      icon: <Cog6ToothIcon className="size-4" />,
     },
     {
       label: "Help",
       value: "/help",
-      icon: "help",
+      icon: <QuestionMarkCircleIcon className="size-4" />,
     },
   ];
   const PREDICTIONS = [
     {
       label: "MoM user churn for Q3",
+      icon: <CircleStackIcon className="size-4" />,
     },
     {
       label: "Merch sales for Jan",
-      value: "/definition",
+      icon: <CircleStackIcon className="size-4" />,
     },
     {
       label: "State-wise donor prediction",
-      value: "/settings",
+      icon: <CircleStackIcon className="size-4" />,
     },
   ];
   const DATASETS = [
     {
       label: "Twitch data",
+      icon: <CircleStackIcon className="size-4" />,
     },
     {
       label: "SLOBS user data",
-      value: "/definition",
+      icon: <CircleStackIcon className="size-4" />,
     },
     {
       label: "External CSV file",
-      value: "/settings",
+      icon: <TableCellsIcon className="size-4" />,
     },
   ];
   return (
-    <div className={`bg-gray-200 p-4`}>
+    <div className={`bg-gray-100 p-6 w-72`}>
       <Header />
       <UserCard name="Monica Greenleaf" company="Microsoft Inc." />
-      <div className={``}>
-        {MENU_ITEMS.map((item) => {
-          return <div className="p-1">{item.label}</div>;
+      <ListItems data={MENU_ITEMS} />
+      <hr className="bg-slate-200 w-100 h-px my-4" />
+      <ListItems data={PREDICTIONS} title="My Predictions" showMore />
+      <hr className="bg-slate-200 w-100 h-px my-4" />
+      <ListItems data={DATASETS} title="My Datasets" showMore />
+    </div>
+  );
+};
+
+const ListItems = ({ data, title, showMore = false }) => {
+  return (
+    <div className={`text-sm`}>
+      {!!title && <Title label={title} />}
+      <div className={`flex gap-2 flex-col`}>
+        {data.map((item) => {
+          return (
+            <div className={"flex p-1 gap-2 items-center"}>
+              <div className={"shrink-0"}>{item.icon}</div>
+              <div className="">{item.label}</div>
+            </div>
+          );
         })}
       </div>
-      <hr className="bg-slate-300 w-100 h-0.5 my-2" />
-      <div className={``}>
-        <Title label="My Predictions" />
-        {PREDICTIONS.map((item) => {
-          return <div className="mb-2">{item.label}</div>;
-        })}
-        <div className={"font-bold text-gray-600 text-sm"}>Show all</div>
-      </div>
-      <hr className="bg-slate-300 w-100 h-0.5 my-2" />
-      <div className={``}>
-        <Title label="My Datasets" />
-        {DATASETS.map((item) => {
-          return <div className="mb-2">{item.label}</div>;
-        })}
-        <div className={"font-bold text-gray-600 text-sm"}>Show all</div>
-      </div>
+      {showMore && (
+        <div className={"p-1 font-bold text-gray-400 mt-2 text-xs"}>
+          Show all
+        </div>
+      )}
     </div>
   );
 };
 
 const Title = ({ label }) => {
   return (
-    <div className={`flex justify-between mb-2`}>
+    <div className={`flex justify-between items-center mb-4`}>
       <div className={``}>{label}</div>
-      <div className={``}>Plus</div>
+      <div className={``}>
+        <PlusCircleIcon className="size-4" />
+      </div>
     </div>
   );
 };
@@ -99,13 +121,13 @@ const Header = () => {
 
 const UserCard = ({ name, company }) => {
   return (
-    <div className={`flex justify-between p-2 bg-gray-300 my-4`}>
+    <div className={`flex items-center gap-2 py-4 px-3 bg-gray-200 my-4`}>
       <div className={`w-8 h-8 overflow-hidden rounded`}>
         <img src={Profile} alt="" />
       </div>
-      <div className={``}>
+      <div className={`text-xs`}>
         <div className={""}>{name}</div>
-        <div className={""}>{company}</div>
+        <div className={"text-gray-600 italic"}>{company}</div>
       </div>
     </div>
   );
