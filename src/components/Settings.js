@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import RenderUI, { Card } from "../RenderUI";
+import { Card } from "../ui";
+import RenderUI from "../RenderUI";
 
 const EXISTING_USERS = [
   {
