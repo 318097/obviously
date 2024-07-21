@@ -30,3 +30,10 @@
     font-size: 14px;
   }
 }
+
+.card {
+  @apply rounded flex flex-col gap-2 content-between p-4 border-solid shadow-slate-200 shadow-md border-slate-100 border;
+}
+.card-full {
+  @apply rounded flex gap-3 justify-between items-center py-4 px-2 border-solid border-slate-200 border;
+}

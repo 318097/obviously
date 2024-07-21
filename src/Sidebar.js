@@ -1,4 +1,5 @@
 import {
+  CheckCircleIcon,
   CircleStackIcon,
   PlusCircleIcon,
   TableCellsIcon,
@@ -38,15 +39,15 @@ const Sidebar = () => {
   const PREDICTIONS = [
     {
       label: "MoM user churn for Q3",
-      icon: <CircleStackIcon className="size-4" />,
+      icon: <CheckCircleIcon className="size-4" />,
     },
     {
       label: "Merch sales for Jan",
-      icon: <CircleStackIcon className="size-4" />,
+      icon: <CheckCircleIcon className="size-4" />,
     },
     {
       label: "State-wise donor prediction",
-      icon: <CircleStackIcon className="size-4" />,
+      icon: <CheckCircleIcon className="size-4" />,
     },
   ];
   const DATASETS = [
