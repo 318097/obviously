@@ -21,10 +21,10 @@ You may also see any lint errors in the console.
 - Settings - http://localhost:3000/settings
 - Add dataset - http://localhost:3000/add-dataset
 
-### Deployed
+### Netlify
 
-- Settings - http://localhost:3000/settings
-- Add dataset - http://localhost:3000/add-dataset
+- Settings - https://obviously-ai.netlify.app/settings
+- Add dataset - https://obviously-ai.netlify.app/add-dataset
 
 ## Preview
 
