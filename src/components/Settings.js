@@ -159,8 +159,8 @@ const Settings = (props) => {
   ];
   // const {} = props
   return (
-    <div className="p-4 mt-20">
-      <h2 className={"text-5xl font-light mb-2"}>
+    <div className="py-4 px-8 mt-40">
+      <h2 className={"text-4xl font-bold mb-2"}>
         All your <br /> settings in one palce.
       </h2>
       <div className={"mb-4"}>Manage account details, billing and users.</div>
@@ -168,7 +168,7 @@ const Settings = (props) => {
         <RenderUI uiConfig={ITEMS} />
       </div>
 
-      <button className="mt-4 p-6 w-full bg-blue-500 rounded-sm text-white">
+      <button className="mt-4 p-6 w-full bg-blue-500 rounded text-white">
         Update all settings
       </button>
     </div>
