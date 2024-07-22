@@ -25,3 +25,13 @@ You may also see any lint errors in the console.
 
 - Settings - http://localhost:3000/settings
 - Add dataset - http://localhost:3000/add-dataset
+
+## Preview
+
+### Settings page
+
+![Settings page](solution/Screenshot%202024-07-22%20at%204.17.06 PM.png)
+
+### Add dataset page
+
+![Add dataset page](solution/Screenshot%202024-07-22%20at%204.16.58 PM.png)
