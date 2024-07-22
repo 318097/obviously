@@ -5,7 +5,7 @@ import Settings from "./components/Settings";
 import AddDatabase from "./components/AddDatabase";
 import bg1 from "./assets/images/group.svg";
 import bg2 from "./assets/images/group2.svg";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, Redirect } from "react-router-dom";
 
 function App() {
   const { pathname } = useLocation();
@@ -26,6 +26,7 @@ function App() {
         <Switch>
           <Route path="/settings" component={Settings} />
           <Route path="/add-dataset" component={AddDatabase} />
+          <Redirect to={"/settings"} />
         </Switch>
       </main>
     </div>
