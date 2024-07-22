@@ -12,8 +12,10 @@ import {
   QuestionMarkCircleIcon,
   ViewColumnsIcon,
 } from "@heroicons/react/24/outline";
+import { useHistory } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ pathname }) => {
+  const isAddDatasetPage = pathname === "/add-dataset";
   const MENU_ITEMS = [
     {
       label: "Explore",
@@ -65,41 +67,78 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className={`bg-gray-100 p-6 w-80`}>
+    <div className={`bg-gray-100 p-6 w-80 shrink-0`}>
       <Header />
       <UserCard name="Monica Greenleaf" company="Microsoft Inc." />
-      <ListItems data={MENU_ITEMS} />
+      <ListItems data={MENU_ITEMS} highlighted={pathname} />
       <hr className="bg-slate-200 w-100 h-px my-4" />
-      <ListItems data={PREDICTIONS} title="My Predictions" showMore />
+      <ListItems
+        data={isAddDatasetPage ? [] : PREDICTIONS}
+        title="My Predictions"
+        showMore
+        emptyMsg={
+          <div className="flex items-center gap-1">
+            Click <PlusCircleIcon className="size-4" /> to make your first
+            prediction ...
+          </div>
+        }
+      />
       <hr className="bg-slate-200 w-100 h-px my-4" />
-      <ListItems data={DATASETS} title="My Datasets" showMore />
+      <ListItems
+        data={isAddDatasetPage ? [] : DATASETS}
+        title="My Datasets"
+        showMore
+        emptyMsg={
+          <div className="flex items-center gap-1">
+            Click <PlusCircleIcon className="size-4" /> to make your first
+            dataset ...
+          </div>
+        }
+      />
     </div>
   );
 };
 
-const ListItems = ({ data, emptyMsg, title, showMore = false }) => {
+const ListItems = ({
+  data,
+  emptyMsg,
+  title,
+  showMore = false,
+  highlighted,
+}) => {
+  const history = useHistory();
+
   return (
     <div className={`text-sm`}>
       {!!title && <Title label={title} />}
       {data.length ? (
         <div className={`flex gap-2 flex-col`}>
           {data.map((item) => {
+            const isHighlighted = highlighted && item.value === highlighted;
+
             return (
-              <div className={"flex p-1 gap-2 items-center"}>
-                <div className={"shrink-0"}>{item.icon}</div>
-                <div className="">{item.label}</div>
+              <div
+                className={`flex p-1 gap-2 items-center hover:cursor-pointer hover:font-bold`}
+                onClick={() => history.push(item.value)}
+              >
+                <div className={`shrink-0 ${isHighlighted ? "stroke-1" : ""}`}>
+                  {item.icon}
+                </div>
+                <div className={isHighlighted ? "font-bold" : ""}>
+                  {item.label}
+                </div>
               </div>
             );
           })}
         </div>
       ) : (
-        <div className={"italic font-sm text-gray-300"}>{emptyMsg}</div>
+        <div className={"italic text-xs text-gray-400"}>{emptyMsg}</div>
       )}
-      {showMore && data.length && (
-        <div className={"p-1 font-bold text-gray-400 mt-2 text-xs"}>
+      {showMore && data.length ? (
+        <div className={"p-1 font-bold text-gray-500 mt-2 text-xs"}>
           Show all
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
@@ -126,13 +165,22 @@ const Header = () => {
 
 const UserCard = ({ name, company }) => {
   return (
-    <div className={`flex items-center gap-2 py-4 px-3 bg-gray-200 my-4`}>
-      <div className={`w-8 h-8 overflow-hidden rounded`}>
+    <div
+      className={`flex items-center gap-3 py-4 px-4 bg-gray-200 my-4 overflow-hidden relative rounded`}
+    >
+      <div className={`size-9 overflow-hidden rounded`}>
         <img src={Profile} alt="" />
       </div>
       <div className={`text-xs`}>
         <div className={""}>{name}</div>
         <div className={"text-gray-600 italic"}>{company}</div>
+      </div>
+      <div
+        className={
+          "absolute top-[7px] right-[-18px] rotate-[40deg] bg-blue-500 text-white text-[8px] py-[1px] px-[18px]"
+        }
+      >
+        Premium
       </div>
     </div>
   );

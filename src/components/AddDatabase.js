@@ -1,25 +1,5 @@
-import { Card } from "../ui";
 import RenderUI from "../RenderUI";
 import { CircleStackIcon } from "@heroicons/react/24/outline";
-
-const EXISTING_USERS = [
-  {
-    label: "Monica Greenleaf",
-    value: "monica.greenleaf@microsoft.com",
-  },
-  {
-    label: "John Wick",
-    value: "john.wick@microsoft.com",
-  },
-  {
-    label: "Tom Cruise",
-    value: "tom.cruise@microsoft.com",
-  },
-  {
-    label: "Emma Stone",
-    value: "emma.stone@microsoft.com",
-  },
-];
 
 const AddDataset = (props) => {
   const ITEMS = [
@@ -63,7 +43,7 @@ const AddDataset = (props) => {
   ];
   return (
     <div className="py-4 px-8 mt-40">
-      <h2 className={"text-4xl font-bold mb-2"}>
+      <h2 className={"text-4xl font-bold mb-2 text-gray-700"}>
         Add datasets <br /> to your Obviously account.
       </h2>
       <div className={"mb-4"}>
@@ -78,7 +58,13 @@ const AddDataset = (props) => {
           </button>
         </div>
       </div>
-      <hr className="my-7" />
+      <div className={"my-10 "}>
+        <div className={"flex items-center text-gray-300"}>
+          <hr className="grow" />
+          <span className="px-2">OR</span>
+          <hr className="grow-[3]" />
+        </div>
+      </div>
       <div className={""}>
         <div className={"mb-2 text-lg"}>Connect a database</div>
         <div className={"mb-4 italic text-sm"}>

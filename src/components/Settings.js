@@ -1,24 +1,6 @@
-import { Card } from "../ui";
+import { Card, Icon } from "../ui";
 import RenderUI from "../RenderUI";
-
-const EXISTING_USERS = [
-  {
-    label: "Monica Greenleaf",
-    value: "monica.greenleaf@microsoft.com",
-  },
-  {
-    label: "John Wick",
-    value: "john.wick@microsoft.com",
-  },
-  {
-    label: "Tom Cruise",
-    value: "tom.cruise@microsoft.com",
-  },
-  {
-    label: "Emma Stone",
-    value: "emma.stone@microsoft.com",
-  },
-];
+import { EXISTING_USERS } from "../data";
 
 const Settings = (props) => {
   const ITEMS = [
@@ -87,21 +69,21 @@ const Settings = (props) => {
             label={"Premium"}
             value={"Supports 10M rows of data + 5 free user seats"}
             right={"$799 /mo"}
-            variant="fufdll"
+            variant="full"
           />
           <div className="mb-2 mt-4">Other plan</div>
           <Card
             label={"Basic"}
             value={"Supports 500K rows of data + 1 free user seat"}
             right={"$299 /mo"}
-            variant="fufdll"
+            variant="full"
             className={"mb-3"}
           />
           <Card
             label={"Standard"}
             value={"Supports 5M rows of data + 3 free user seats"}
             right={"$499 /mo"}
-            variant="fufdll"
+            variant="full"
             className={"mb-3"}
           />
           <div className={"text-xs"}>
@@ -119,29 +101,71 @@ const Settings = (props) => {
       children: (
         <div className="h-full flex flex-col">
           <div className={"grow"}>
-            <div className={"flex gap-2"}>
+            <div className={"flex gap-4"}>
               <Card
                 label={"Name"}
                 value={"Dwayne “The Rock” Johnson"}
-                variant="fufdll"
-                className={"grow"}
+                className={"grow basis-44"}
               />
               <Card
                 label={"Email"}
                 value={"dwayne.the.rock.johnson@microsoft.com"}
-                variant="fufdll"
-                className={"grow"}
+                className={"grow basis-44"}
               />
+              <div
+                className={"card size-[79px] flex items-center justify-center"}
+              >
+                <Icon name="plus" className="size-8" />
+              </div>
             </div>
 
             <div className="mb-2 mt-4">Existing users</div>
-            <div className={"flex gap-2 flex-wrap"}>
+            <div className={"flex gap-4 flex-wrap"}>
               {EXISTING_USERS.map((item) => {
+                const adminDisabledClasses = item.disabled?.includes("admin")
+                  ? `text-gray-300 hover:cursor-not-allowed`
+                  : "";
+                const removeDisabledClasses = item.disabled?.includes("remove")
+                  ? `text-gray-300 hover:cursor-not-allowed`
+                  : "";
                 return (
                   <Card
                     {...item}
-                    right={"$299 /mo"}
-                    variant="fufdll"
+                    right={
+                      <div className="flex gap-1.5 items-center">
+                        <div
+                          className={
+                            "flex flex-col gap-0.6 items-center justify-center"
+                          }
+                        >
+                          <Icon
+                            name="user"
+                            className={`text-green-600 ${adminDisabledClasses}`}
+                          />
+                          <span
+                            className={`text-[8px] text-green-600 ${adminDisabledClasses}`}
+                          >
+                            Admin
+                          </span>
+                        </div>
+                        <div
+                          className={
+                            "flex flex-col gap-0.6 items-center justify-center"
+                          }
+                        >
+                          <Icon
+                            name="x"
+                            className={`text-red-600 ${removeDisabledClasses}`}
+                          />
+                          <span
+                            className={`text-[8px] text-red-600 ${removeDisabledClasses}`}
+                          >
+                            Remove
+                          </span>
+                        </div>
+                      </div>
+                    }
+                    variant="full"
                     className={"basis-5/12"}
                   />
                 );
@@ -157,10 +181,9 @@ const Settings = (props) => {
       ),
     },
   ];
-  // const {} = props
   return (
     <div className="py-4 px-8 mt-40">
-      <h2 className={"text-4xl font-bold mb-2"}>
+      <h2 className={"text-4xl font-bold mb-2 text-gray-700"}>
         All your <br /> settings in one palce.
       </h2>
       <div className={"mb-4"}>Manage account details, billing and users.</div>
